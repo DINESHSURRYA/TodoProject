@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'todos/styles.css' %}">
+    <style>
+        .history-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            z-index: 1;
+        }
+        .card-header {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="{% static 'todos/videos/Cyber_Punk.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+
+    <!-- Todo Box -->
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card zoom-box w-100" style="max-width: 700px;">
+            <div class="card-header text-center">
+                <h1 class="todo-heading m-0">
+                    <i class="fas fa-check-double"></i> Todos
+                </h1>
+                <a href="{% url 'history' %}" class="btn btn-sm btn-info history-button" title="History">
+                    <i class="fas fa-history fa-lg"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <!-- Add Task Form -->
+                <ul class="list-group mb-3">
+                    <li class="list-group-item bg-transparent border-0 p-0">
+                        <form action="{% url 'insert_todo_item' %}" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="content" placeholder="Add new task...">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-sm text-info">
+                                        <i class="fa fa-plus-circle fa-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+
+                <!-- Task List -->
+                <div style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
+                    <ul class="list-group list-group-flush">
+                        {% for todo in todo_list %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span>{{ todo.content }}</span><br>
+                                    <small class="text-muted">{{ todo.created_at|date:"M d, H:i" }}</small>
+                                </div>
+                                <div class="btn-group">
+                                    <form action="{% url 'mark_done' todo.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-success me-2" title="Done">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </form>
+                                    <a href="{% url 'edit_todo_item' todo.id %}" class="btn btn-sm btn-warning me-2">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <form action="{% url 'delete_todo_item' todo.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </li>
+                        {% empty %}
+                            <li class="list-group-item text-muted text-center">No tasks yet.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

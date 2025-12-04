@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Todo</title>
+    
+    <!-- Bootstrap & Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'todos/styles.css' %}">
+
+</head>
+<body>
+
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="{% static 'todos/videos/Cyber_Punk.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Edit Form -->
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card zoom-box w-100" style="max-width: 600px;">
+            <div class="card-header text-center">
+                <h1 class="todo-heading">
+                    <i class="fas fa-pen-nib"></i> Edit Task
+                </h1>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input type="text" name="content" class="form-control" value="{{ todo.content }}" required>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                    <a href="{% url 'todo_list' %}" class="btn btn-secondary w-100 mt-2">
+                        <i class="fas fa-arrow-left"></i> Cancel
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- FontAwesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

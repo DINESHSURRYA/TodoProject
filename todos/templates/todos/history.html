@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>History</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #E0E0E0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            filter: brightness(60%);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: -1;
+        }
+
+        .main-content {
+            z-index: 1;
+            position: relative;
+            padding-top: 5rem;
+        }
+
+        .card {
+            background-color: #212529; /* Dark background color */
+            border-color: rgba(255, 255, 255, 0.1);
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .list-group-item {
+            background-color: transparent !important;
+            border-color: #343a40;
+            color: #B0B0B0;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            border: none;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .list-group-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #8a2be2, #4b0082, #8a2be2) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            transform: scale(1.02);
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .list-group-item:hover::before {
+            opacity: 1;
+        }
+
+        .list-group-item span {
+            font-weight: 700;
+            color: #E0E0E0;
+        }
+
+        .btn-group .btn {
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-group .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-custom-outline-green {
+            background-color: transparent;
+            border: 2px solid #28a745;
+            color: #28a745;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-outline-green:hover {
+            background-color: #28a745;
+            color: white;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+        }
+
+        .btn-custom-outline-purple {
+            background-color: transparent;
+            border: 2px solid #8a2be2;
+            color: #8a2be2;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-outline-purple:hover {
+            background-color: #8a2be2;
+            color: white;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+        
+        .btn-custom-outline-red {
+            background-color: transparent;
+            border: 2px solid #dc3545;
+            color: #dc3545;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-outline-red:hover {
+            background-color: #dc3545;
+            color: white;
+            box-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="{% static 'todos/videos/Cyber_Punk.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+
+    <div class="main-content">
+        <div class="container">
+            <h3 class="text-info mb-4 text-center" style="text-shadow: 1px 1px 5px rgba(0,255,255,0.5);">
+                <i class="fas fa-history"></i> Completed Tasks History
+            </h3>
+            <div class="card p-4">
+                <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                    <ul class="list-group list-group-flush">
+                        {% for todo in completed_list %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-white">{{ todo.content }}</span><br>
+                                    <small class="text-muted">{{ todo.created_at|date:"M d, H:i" }}</small>
+                                </div>
+                                <div class="btn-group">
+                                    <form action="{% url 'unmark_done' todo.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-custom-outline-green me-2" title="Undo">
+                                            <i class="fas fa-undo"></i>
+                                        </button>
+                                    </form>
+                                    <a href="{% url 'edit_todo_item' todo.id %}" class="btn btn-sm btn-custom-outline-purple me-2">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <form action="{% url 'delete_todo_item' todo.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-custom-outline-red">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </li>
+                        {% empty %}
+                            <li class="list-group-item text-muted text-center">No completed tasks yet.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="{% url 'todo_list' %}" class="btn btn-custom-outline-purple rounded-pill px-4">
+                        ← Back to Todos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
