@@ -83,13 +83,13 @@ body {
 
 /* 5. Typography & UI Elements (Bright & Neon) */
 .todo-heading {
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 800;
     color: #00fff7;
     text-transform: uppercase;
     letter-spacing: 5px;
     text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
-    margin-bottom: 20px !important;
+    margin-bottom: 10px !important;
 }
 
 /* Inputs */
@@ -426,13 +426,13 @@ body {
     font-size: 1.6rem;
     color: #00fff7;
     text-shadow: 0 0 10px rgba(0, 255, 247, 0.5);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
     text-decoration: none;
 }
 
 .contact-icon:hover {
     color: #fff;
-    transform: translateY(-5px);
+    transform: none;
 }
 
 .contact-icon.github:hover {
