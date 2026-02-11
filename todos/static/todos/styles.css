@@ -67,9 +67,18 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-5px) scale(1.01);
+    transform: translateY(-5px);
     box-shadow: 0 0 50px rgba(0, 255, 247, 0.4);
     border-color: #00fff7;
+}
+
+/* Explicit Zoom for Boxes */
+.zoom-box {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.zoom-box:hover {
+    transform: translateY(-8px) scale(1.03) !important;
 }
 
 /* 5. Typography & UI Elements (Bright & Neon) */
@@ -351,14 +360,8 @@ body {
 
 .history-btn:hover {
     color: #fff !important;
-    transform: scale(1.2) rotate(-15deg);
+    transform: translateY(-3px) rotate(-15deg);
     text-shadow: 0 0 25px #fff, 0 0 35px #bc13fe;
-}
-
-.history-btn:hover {
-    color: #fff !important;
-    transform: scale(1.2) rotate(-15deg);
-    text-shadow: 0 0 25px #fff, 0 0 35px #00fff7;
 }
 
 .tasks-remaining {
@@ -429,7 +432,7 @@ body {
 
 .contact-icon:hover {
     color: #fff;
-    transform: translateY(-8px) scale(1.3);
+    transform: translateY(-5px);
 }
 
 .contact-icon.github:hover {
