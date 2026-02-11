@@ -5,11 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todos</title>
+    <title>DS Todos</title>
+    <link rel="icon" type="image/png" href="{% static 'todos/images/todo.png' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'todos/styles.css' %}?v=1.6">
+    <link rel="stylesheet" href="{% static 'todos/styles.css' %}?v=1.8">
+    <link rel="stylesheet" href="{% static 'todos/footer.css' %}?v=1.1">
 </head>
 
 <body>
@@ -23,7 +25,7 @@
         <div class="card zoom-box w-100 mx-3" style="max-width: 700px;">
             <div class="card-header text-center border-0 pt-4 pb-0 bg-transparent position-relative">
                 <h1 class="todo-heading m-0">
-                    <i class="fas fa-check-double"></i> Todos
+                    <i class="fas fa-check-double"></i> DS Todos
                 </h1>
                 <a href="{% url 'history' %}" class="history-btn" data-bs-toggle="tooltip" data-bs-placement="left"
                     title="View Completed Tasks">

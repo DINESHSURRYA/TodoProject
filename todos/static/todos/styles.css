@@ -58,7 +58,7 @@ body {
     background: rgba(0, 0, 0, 0.7) !important;
     /* Darker background for better text contrast */
     border: 2px solid rgba(0, 255, 247, 0.6);
-    border-radius: 15px;
+    border-radius: 10px;
     backdrop-filter: blur(12px) saturate(180%);
     /* Stronger blur and saturation */
     -webkit-backdrop-filter: blur(12px) saturate(180%);
@@ -67,7 +67,6 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 0 50px rgba(0, 255, 247, 0.4);
     border-color: #00fff7;
 }
@@ -78,18 +77,19 @@ body {
 }
 
 .zoom-box:hover {
-    transform: translateY(-8px) scale(1.03) !important;
+    box-shadow: 0 0 50px rgba(0, 255, 247, 0.4);
+    border-color: #00fff7;
 }
 
 /* 5. Typography & UI Elements (Bright & Neon) */
 .todo-heading {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 800;
     color: #00fff7;
     text-transform: uppercase;
     letter-spacing: 5px;
     text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
-    margin-bottom: 10px !important;
+    margin-bottom: 5px !important;
 }
 
 /* Inputs */
@@ -117,7 +117,6 @@ body {
 .btn-primary-glow:hover {
     background: #fff !important;
     box-shadow: 0 0 25px #fff;
-    transform: scale(1.05);
 }
 
 .btn-update-glow {
@@ -133,7 +132,6 @@ body {
 .btn-update-glow:hover {
     background: #fff !important;
     box-shadow: 0 0 25px #fff;
-    transform: scale(1.05);
 }
 
 /* List Items */
@@ -304,7 +302,6 @@ body {
     background: #ff003c !important;
     color: #fff !important;
     box-shadow: 0 0 20px #ff003c;
-    transform: scale(1.05);
 }
 
 .btn-danger-glow {
@@ -328,7 +325,6 @@ body {
     background: #bc13fe !important;
     color: #fff !important;
     box-shadow: 0 0 25px #bc13fe;
-    transform: translateY(-3px);
 }
 
 /* Special icons removed global override */
@@ -347,12 +343,12 @@ body {
 /* 6. Specific Fixes for History Icon & Tasks Remaining */
 .history-btn {
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 15px;
+    right: 15px;
     z-index: 100;
     color: #bc13fe !important;
     /* Neon Purple */
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-shadow: 0 0 15px rgba(188, 19, 254, 0.6);
@@ -360,7 +356,6 @@ body {
 
 .history-btn:hover {
     color: #fff !important;
-    transform: translateY(-3px) rotate(-15deg);
     text-shadow: 0 0 25px #fff, 0 0 35px #bc13fe;
 }
 
@@ -402,65 +397,9 @@ body {
 }
 
 /* 7. Footer Contact Styles */
-.footer-contact {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-top: 2px solid rgba(0, 255, 247, 0.4);
-    z-index: 1000;
-}
-
-.contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 8px;
-}
-
-.contact-icon {
-    font-size: 1.6rem;
-    color: #00fff7;
-    text-shadow: 0 0 10px rgba(0, 255, 247, 0.5);
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-    text-decoration: none;
-}
-
-.contact-icon:hover {
-    color: #fff;
-    transform: none;
-}
-
-.contact-icon.github:hover {
-    color: #fff;
-    text-shadow: 0 0 20px #fff, 0 0 30px #00fff7;
-}
-
-.contact-icon.linkedin:hover {
-    color: #0077b5;
-    text-shadow: 0 0 20px #0077b5, 0 0 30px #0077b5;
-}
-
-.contact-icon.email:hover {
-    color: #ff00c8;
-    text-shadow: 0 0 20px #ff00c8, 0 0 30px #ff00c8;
-}
-
-.copyright {
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
-    margin: 0;
-    font-weight: 500;
-}
+/* Section 7 removed - Moved to dedicated footer.css */
 
 /* Adjust page content to prevent overlap */
 .vh-100 {
     padding-bottom: 80px;
-    /* Room for footer */
 }

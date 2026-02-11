@@ -1,0 +1,70 @@
+/* ==========================================================
+   DS TODOS - HARD-LOCKED FOOTER CONTACTS
+   ========================================================== */
+
+.footer-contact {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 2px solid rgba(0, 255, 247, 0.4);
+    z-index: 1000;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 5px;
+}
+
+/* Hard-Locked Contact Styles (STILL - NO ZOOM) */
+.contact-icon {
+    font-size: 1.1rem;
+    color: #00fff7 !important;
+    text-shadow: 0 0 8px rgba(0, 255, 247, 0.4);
+    text-decoration: none;
+    display: inline-block;
+
+    /* Strict still-state reinforcement */
+    transform: none !important;
+    scale: 1 !important;
+    animation: none !important;
+    transition: color 0.3s ease, text-shadow 0.3s ease !important;
+}
+
+/* Ensure no movement happens on hover */
+.contact-icon:hover {
+    transform: none !important;
+    scale: 1 !important;
+    animation: none !important;
+}
+
+.contact-icon.github:hover {
+    color: #fff !important;
+    text-shadow: 0 0 15px #00fff7;
+}
+
+.contact-icon.linkedin:hover {
+    color: #0077b5 !important;
+    text-shadow: 0 0 20px rgba(0, 119, 181, 0.6) !important;
+}
+
+.contact-icon.email:hover {
+    color: #ff00c8 !important;
+    text-shadow: 0 0 15px #ff00c8;
+}
+
+.copyright {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+    font-weight: 500;
+    text-align: center;
+}
