@@ -1,16 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Edit Todo</title>
-    
-    <!-- Bootstrap & Fonts -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'todos/styles.css' %}">
-
+    <link rel="stylesheet" href="{% static 'todos/styles.css' %}?v=1.7">
 </head>
+
 <body>
 
     <!-- Background Video -->
@@ -18,38 +18,47 @@
         <source src="{% static 'todos/videos/Cyber_Punk.mp4' %}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+    <!-- No Overlay to preserve video quality -->
 
-    <!-- Overlay -->
-    <div class="overlay"></div>
-
-    <!-- Edit Form -->
     <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="card zoom-box w-100" style="max-width: 600px;">
-            <div class="card-header text-center">
+        <div class="card zoom-box w-100 mx-3" style="max-width: 600px;">
+            <div class="card-header text-center border-0 pt-4 bg-transparent">
                 <h1 class="todo-heading">
                     <i class="fas fa-pen-nib"></i> Edit Task
                 </h1>
             </div>
-            <div class="card-body">
-                <form method="POST">
+            <div class="card-body p-4">
+                <form method="POST" autocomplete="off">
                     {% csrf_token %}
-                    <div class="input-group mb-3">
-                        <input type="text" name="content" class="form-control" value="{{ todo.content }}" required>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-save"></i> Save
-                            </button>
+                    <div class="mb-4">
+                        <label class="form-label text-info mb-2" style="font-size: 0.9rem; letter-spacing: 1px;">Task
+                            Content</label>
+                        <div class="input-group">
+                            <input type="text" name="content" class="form-control" value="{{ todo.content }}" required>
                         </div>
                     </div>
-                    <a href="{% url 'todo_list' %}" class="btn btn-secondary w-100 mt-2">
-                        <i class="fas fa-arrow-left"></i> Cancel
-                    </a>
+
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <a href="{% url 'todo_list' %}" class="btn btn-back px-4 rounded-pill" data-bs-toggle="tooltip"
+                            title="Discard Changes">
+                            <i class="fas fa-arrow-left me-2"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-update-glow px-4 rounded-pill" data-bs-toggle="tooltip"
+                            title="Save Changes">
+                            <i class="fas fa-save me-2"></i> Update
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- FontAwesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize Bootstrap Tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 </body>
+
 </html>

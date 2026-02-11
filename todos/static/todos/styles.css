@@ -1,200 +1,399 @@
-/* === Reset & General === */
-body {
+/* ==========================================================
+   ULTRA-CLEAR DESIGN SYSTEM - ZERO DULLNESS
+   ========================================================== */
+
+/* 1. Absolute Reset */
+* {
     margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    color: white;
-    overflow: hidden;
-    height: 100vh;
-    background: none;
-    position: relative;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* === Background Video === */
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    overflow: hidden;
+    background: transparent;
+    /* Changed from black to transparent so video is visible */
+}
+
+/* 2. Background Video - FORCED ORIGINAL QUALITY */
 #bg-video {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     z-index: -2;
+    /* Ensure it stays behind everything */
+    filter: none !important;
+    opacity: 1 !important;
     pointer-events: none;
+
+    /* Preserve quality */
+    image-rendering: auto;
 }
-pointer-events: none;
 
-
-/* === Overlay for clarity === */
+/* 3. Global Overlay - DISABLED */
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: -1;
-    pointer-events : none;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
-/* === Card Styling === */
+/* 4. Central Todo Box - Glassmorphism that doesn't darken the rest */
+.vh-100 {
+    position: relative;
+    z-index: 10;
+    background: transparent !important;
+}
+
 .card {
-    background-color: rgba(0, 0, 0, 0.85);
-    border-radius: 20px;
-    border: 1px solid #00fff7;
-    box-shadow: 0 0 20px #00fff7aa;
-    transition: transform 0.3s ease-in-out;
-    z-index: 2;
+    background: rgba(0, 0, 0, 0.7) !important;
+    /* Darker background for better text contrast */
+    border: 2px solid rgba(0, 255, 247, 0.6);
+    border-radius: 15px;
+    backdrop-filter: blur(12px) saturate(180%);
+    /* Stronger blur and saturation */
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 247, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* === Zoom only box === */
-.zoom-box:hover {
-    transform: scale(1.03);
-}
-
-/* === Clear & Glowing Heading === */
-.todo-heading {
-    font-weight: bold;
-    color: #00fff7;
-    font-size: 2.5rem;
-    text-shadow: 
-        0 0 5px #0ff,
-        0 0 10px #00fff7,
-        0 0 20px #ff00c8,
-        0 0 30px #ff00c8;
-}
-
-/* === Inputs === */
-.input-group input {
-    background-color: #111;
-    border: 2px solid #0ff;
-    color: #0ff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #00fff733;
-    padding: 10px;
-}
-
-.input-group input::placeholder {
-    color: #33f2ff;
-    font-style: italic;
-}
-
-.input-group input:focus {
-    background-color: #fff;
-    color: #000;
-    outline: none;
+.card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 0 50px rgba(0, 255, 247, 0.4);
     border-color: #00fff7;
-    box-shadow: 0 0 10px #00fff7aa, 0 0 20px #ff00c8aa;
 }
 
-.input-group input:focus::placeholder {
-    color: #888;
-    font-style: italic;
+/* 5. Typography & UI Elements (Bright & Neon) */
+.todo-heading {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #00fff7;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
+    margin-bottom: 20px !important;
 }
 
-.input-group button {
-    background: linear-gradient(45deg, #00fff7, #ff00c8);
+/* Inputs */
+.input-group .form-control {
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid #00fff7 !important;
+    color: #00fff7 !important;
+    font-family: 'Orbitron', sans-serif;
+    padding: 15px;
+}
+
+.input-group .form-control::placeholder {
+    color: rgba(0, 255, 247, 0.4);
+}
+
+.btn-primary-glow {
+    background: #00fff7 !important;
+    color: #000 !important;
+    font-weight: 900;
     border: none;
-    color: #000;
-    font-weight: bold;
-    box-shadow: 0 0 10px #00fff7aa;
-    transition: background 0.3s, transform 0.2s;
-    border-radius: 5px;
-    padding: 6px 12px;
+    box-shadow: 0 0 15px #00fff7;
+    transition: 0.3s;
 }
 
-.input-group button:hover {
-    transform: scale(1.1);
-    background: linear-gradient(45deg, #ff00c8, #00fff7);
+.btn-primary-glow:hover {
+    background: #fff !important;
+    box-shadow: 0 0 25px #fff;
+    transform: scale(1.05);
 }
 
-/* === List Items === */
+.btn-update-glow {
+    background: #ffda00 !important;
+    /* Neon Gold to match Edit */
+    color: #000 !important;
+    font-weight: 900;
+    border: none;
+    box-shadow: 0 0 15px #ffda00;
+    transition: 0.3s;
+}
+
+.btn-update-glow:hover {
+    background: #fff !important;
+    box-shadow: 0 0 25px #fff;
+    transform: scale(1.05);
+}
+
+/* List Items */
 .list-group-item {
-    background-color: transparent;
-    border: 1px solid #00fff766;
-    color: #0ff;
-    transition: background 0.2s ease-in-out, transform 0.2s;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(0, 255, 247, 0.1) !important;
+    color: #fff !important;
+    margin-bottom: 8px;
+    border-radius: 10px !important;
+    transition: 0.3s;
 }
 
 .list-group-item:hover {
-    background-color: #111;
-    transform: scale(1.02);
-    box-shadow: 0 0 10px #00fff733;
+    background: rgba(0, 255, 247, 0.15) !important;
+    border-color: #00fff7 !important;
+    box-shadow: inset 0 0 10px rgba(0, 255, 247, 0.1);
 }
 
-/* === Buttons === */
-.btn-warning {
-    background-color: #ffae00;
-    color: #000;
-    border: none;
-    box-shadow: 0 0 10px #ffae00aa;
-    transition: all 0.2s ease;
+.todo-content-wrapper {
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* Prevent vertical layout jitter */
+    white-space: nowrap;
+    cursor: default;
+    padding-bottom: 8px;
+    /* Room for scrollbar */
 }
 
-.btn-warning:hover {
-    transform: scale(1.1);
-    background-color: #ffd54f;
-    box-shadow: 0 0 15px #ffd54f;
+.todo-text {
+    font-size: 1.25rem;
+    margin-bottom: 0px;
+    display: block;
 }
 
-.btn-danger {
-    background-color: transparent;
-    border: 1px solid #ff004c;
-    color: #ff004c;
-    box-shadow: 0 0 8px #ff004c77;
-    transition: all 0.2s;
+/* Hide scrollbar by default, show on hover or while scrolling */
+.todo-content-wrapper::-webkit-scrollbar {
+    height: 4px;
 }
 
-.btn-danger:hover {
-    background-color: #ff004c;
-    color: #000;
-    transform: scale(1.1);
+.todo-content-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 247, 0.5);
 }
 
-/* === Tick Animation Button (Done) === */
-.tick-animate {
-    transition: all 0.2s ease-in-out;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    box-shadow: 0 0 10px #28a74599;
+.text-date {
+    color: #ff00c8 !important;
+    font-size: 0.8rem;
+    text-shadow: 0 0 5px #ff00c8;
 }
 
-.tick-animate:hover {
-    transform: scale(1.1);
-    background-color: #34d058;
-    box-shadow: 0 0 15px #34d058aa;
-}
-
-.tick-animate:focus {
-    outline: none;
-    box-shadow: 0 0 15px #00ff99;
-}
-
-/* === Scrollbar === */
+/* Scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #000;
+    width: 6px;
+    height: 6px;
+    /* Added height for horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #0ff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #0ff;
+    background: #00fff7;
+    border-radius: 10px;
 }
 
-/* === Responsive === */
-@media screen and (max-width: 768px) {
-    .todo-heading {
-        font-size: 1.8rem;
-    }
-
-    .input-group input {
-        font-size: 14px;
-    }
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
 }
 
-.todo-box::-webkit-scrollbar {
-    height: 0px;
+/* Completed Items */
+.text-completed {
+    color: rgba(255, 255, 255, 0.4) !important;
+    text-decoration: line-through;
+    text-decoration-color: #ff00c8;
+}
+
+/* Visibility fixes for muted text and buttons */
+.text-muted {
+    color: #00fff7 !important;
+    /* Bright cyan instead of dull grey */
+    opacity: 0.9;
+    text-shadow: 0 0 5px rgba(0, 255, 247, 0.5);
+}
+
+.text-info {
+    color: #00fff7 !important;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px #00fff7;
+    font-weight: 700;
+}
+
+.btn-outline-glow,
+.btn-outline-glow i {
+    color: #00fff7 !important;
+    border-color: #00fff7 !important;
+}
+
+.btn-outline-glow:hover {
+    background: #00fff7 !important;
+    color: #000 !important;
+}
+
+.list-group-item .btn {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.btn-done {
+    color: #39ff14 !important;
+    border: 1px solid #39ff14 !important;
+    box-shadow: 0 0 5px rgba(57, 255, 20, 0.3);
+}
+
+.btn-done:hover {
+    background: #39ff14 !important;
+    color: #000 !important;
+    box-shadow: 0 0 15px #39ff14;
+}
+
+.btn-edit {
+    color: #ffda00 !important;
+    border: 1px solid #ffda00 !important;
+    box-shadow: 0 0 5px rgba(255, 218, 0, 0.3);
+}
+
+.btn-edit:hover {
+    background: #ffda00 !important;
+    color: #000 !important;
+    box-shadow: 0 0 15px #ffda00;
+}
+
+.btn-delete {
+    color: #ff003c !important;
+    border: 1px solid #ff003c !important;
+    box-shadow: 0 0 5px rgba(255, 0, 60, 0.3);
+}
+
+.btn-delete:hover {
+    background: #ff003c !important;
+    color: #fff !important;
+    box-shadow: 0 0 15px #ff003c;
+}
+
+.btn-undo {
+    color: #00e5ff !important;
+    border: 1px solid #00e5ff !important;
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.3);
+}
+
+.btn-undo:hover {
+    background: #00e5ff !important;
+    color: #000 !important;
+    box-shadow: 0 0 15px #00e5ff;
+}
+
+.btn-clear {
+    background: rgba(255, 0, 60, 0.1) !important;
+    color: #ff003c !important;
+    border: 1px solid #ff003c !important;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-clear:hover {
+    background: #ff003c !important;
+    color: #fff !important;
+    box-shadow: 0 0 20px #ff003c;
+    transform: scale(1.05);
+}
+
+.btn-danger-glow {
+    color: #ff003c !important;
+    border: 1px solid #ff003c !important;
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.3);
+}
+
+/* Back Button Glow */
+.btn-back {
+    color: #bc13fe !important;
+    border: 2px solid #bc13fe !important;
+    background: transparent !important;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    background: #bc13fe !important;
+    color: #fff !important;
+    box-shadow: 0 0 25px #bc13fe;
+    transform: translateY(-3px);
+}
+
+/* Special icons removed global override */
+.btn-done i {
+    color: inherit !important;
+}
+
+.btn-edit i {
+    color: inherit !important;
+}
+
+.btn-delete i {
+    color: inherit !important;
+}
+
+/* 6. Specific Fixes for History Icon & Tasks Remaining */
+.history-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 100;
+    color: #bc13fe !important;
+    /* Neon Purple */
+    font-size: 1.8rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 0 0 15px rgba(188, 19, 254, 0.6);
+}
+
+.history-btn:hover {
+    color: #fff !important;
+    transform: scale(1.2) rotate(-15deg);
+    text-shadow: 0 0 25px #fff, 0 0 35px #bc13fe;
+}
+
+.history-btn:hover {
+    color: #fff !important;
+    transform: scale(1.2) rotate(-15deg);
+    text-shadow: 0 0 25px #fff, 0 0 35px #00fff7;
+}
+
+.tasks-remaining {
+    color: #ff8c00 !important;
+    /* Neon Gold/Orange */
+    font-size: 1.1rem !important;
+    font-weight: 700;
+    opacity: 1 !important;
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+    margin-top: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.tasks-remaining .count {
+    color: #00fff7;
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-shadow: 0 0 15px #00fff7;
+    margin-right: 8px;
+}
+
+/* Custom Tooltip Styling */
+.tooltip-inner {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    border: 1px solid #00fff7;
+    color: #00fff7 !important;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    padding: 8px 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+    border-radius: 8px;
+}
+
+.tooltip .tooltip-arrow::before {
+    border-top-color: #00fff7 !important;
+    border-bottom-color: #00fff7 !important;
 }

@@ -56,3 +56,8 @@ def unmark_done(request, todo_id):
 def history(request):
     completed_list = Todo.objects.filter(completed=True).order_by('-created_at')
     return render(request, 'todos/history.html', {'completed_list': completed_list})
+
+# ✅ Delete all completed tasks
+def delete_all_completed(request):
+    Todo.objects.filter(completed=True).delete()
+    return redirect('history')

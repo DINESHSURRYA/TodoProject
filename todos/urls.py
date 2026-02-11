@@ -9,6 +9,7 @@ urlpatterns = [
     path('mark_done/<int:todo_id>/', views.mark_done, name='mark_done'),
     path('unmark_done/<int:todo_id>/', views.unmark_done, name='unmark_done'),  # ✅ REQUIRED
     path('history/', views.history, name='history'),  # ✅ Add this line
+    path('delete_all_completed/', views.delete_all_completed, name='delete_all_completed'),
 ]
 
 
