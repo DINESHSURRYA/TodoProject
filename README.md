@@ -1,10 +1,10 @@
-# Todo Project (Django)
+# DS Todos (Django)
 
 A Todo application built with Django, utilizing PostgreSQL for the database and `django-environ` for environment variable management.
 
 ## Project Structure
 
-Based on `App_Structure.txt`:
+The project follows a standard Django layout:
 
 ```text
 TodoProject/

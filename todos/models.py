@@ -1,9 +1,3 @@
-# from django.db import models
-
-# # Create your models here.
-# class Todo(models.Model):
-#     content = models.TextField()
-
 from django.db import models
 
 class Todo(models.Model):
