@@ -24,3 +24,6 @@ venv.bak/
 
 # Staticfiles
 staticfiles/
+
+# Project Video
+Video Project.mp4
